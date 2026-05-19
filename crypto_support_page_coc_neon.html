@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support coc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+html{
+scroll-behavior:smooth;
+}
+
+body::before{
+content:'';
+position:fixed;
+inset:0;
+pointer-events:none;
+background:
+radial-gradient(circle at 20% 20%,rgba(255,0,128,0.12),transparent 25%),
+radial-gradient(circle at 80% 30%,rgba(255,0,200,0.08),transparent 25%),
+radial-gradient(circle at 50% 80%,rgba(255,100,200,0.08),transparent 30%);
+animation:bgMove 12s linear infinite;
+}
+
+@keyframes bgMove{
+0%{transform:translateY(0px)}
+50%{transform:translateY(-15px)}
+100%{transform:translateY(0px)}
+}
+
+.floating-hearts{
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+z-index:0;
+}
+
+.heart{
+position:absolute;
+bottom:-50px;
+font-size:22px;
+opacity:0.2;
+animation:floatHeart linear infinite;
+}
+
+@keyframes floatHeart{
+0%{
+transform:translateY(0) rotate(0deg);
+opacity:0;
+}
+20%{
+opacity:0.25;
+}
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#050505;
+color:white;
+display:flex;
+justify-content:center;
+padding:30px 15px;
+min-height:100vh;
+background-image:
+radial-gradient(circle at top,#1a0010 0%,#050505 40%);
+}
+
+.container{
+width:100%;
+max-width:720px;
+background:rgba(255,255,255,0.02);
+border:1px solid rgba(255,105,180,0.15);
+backdrop-filter:blur(8px);
+padding:35px 25px;
+border-radius:30px;
+box-shadow:0 0 40px rgba(255,20,147,0.12);
+}
+
+.nickname{
+color:#ff5db1;
+font-size:15px;
+margin-bottom:15px;
+letter-spacing:2px;
+text-transform:uppercase;
+}
+
+h1{
+font-size:44px;
+line-height:1.1;
+font-weight:800;
+margin-bottom:20px;
+background:linear-gradient(90deg,#ff78c9,#ff3e9d);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.desc{
+font-size:22px;
+line-height:1.6;
+color:#d7d7d7;
+margin-bottom:40px;
+}
+
+.divider{
+display:flex;
+align-items:center;
+gap:14px;
+margin:35px 0;
+justify-content:center;
+}
+
+.divider::before,
+.divider::after{
+content:'';
+height:1px;
+flex:1;
+background:linear-gradient(to right,transparent,#ff4fa8,transparent);
+}
+
+.divider span{
+color:#ff67b7;
+font-size:20px;
+}
+
+.section-title{
+font-size:32px;
+font-weight:700;
+margin-bottom:25px;
+color:#ff70be;
+}
+
+.card{
+background:#0c0c0c;
+border:1px solid rgba(255,105,180,0.25);
+border-radius:24px;
+padding:22px;
+margin-bottom:22px;
+transition:0.25s;
+box-shadow:0 0 20px rgba(255,20,147,0.08);
+}
+
+.card:hover{
+transform:translateY(-2px);
+box-shadow:0 0 35px rgba(255,20,147,0.18);
+}
+
+.row{
+display:flex;
+align-items:center;
+gap:18px;
+margin-bottom:18px;
+}
+
+.icon{
+width:62px;
+height:62px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+font-weight:700;
+flex-shrink:0;
+}
+
+.usdt{
+background:#26A17B;
+}
+
+.btc{
+background:#f7931a;
+}
+
+.coin-title{
+font-size:18px;
+font-weight:700;
+margin-bottom:6px;
+}
+
+.network{
+font-size:15px;
+color:#989898;
+}
+
+.wallet{
+background:#070707;
+border:1px dashed rgba(255,105,180,0.35);
+border-radius:18px;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+word-break:break-all;
+}
+
+.address{
+font-size:17px;
+color:#ff82c7;
+}
+
+.copy-btn{
+background:#ff4fa8;
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:12px;
+cursor:pointer;
+font-weight:700;
+transition:0.2s;
+flex-shrink:0;
+}
+
+.copy-btn:hover{
+background:#ff2c96;
+}
+
+.footer{
+margin-top:45px;
+text-align:center;
+font-size:26px;
+line-height:1.6;
+color:#ededed;
+}
+
+.telegram-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+margin-top:35px;
+text-decoration:none;
+background:linear-gradient(90deg,#ff4fa8,#ff7bc6);
+color:white;
+font-size:18px;
+font-weight:700;
+padding:18px;
+border-radius:18px;
+transition:0.25s;
+box-shadow:0 0 25px rgba(255,20,147,0.25);
+}
+
+.telegram-btn:hover{
+transform:scale(1.02);
+}
+
+@media(max-width:700px){
+.container{
+padding:25px 18px;
+}
+
+h1{
+font-size:34px;
+}
+
+.desc{
+font-size:18px;
+}
+
+.section-title{
+font-size:26px;
+}
+
+.address{
+font-size:14px;
+}
+
+.wallet{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.copy-btn{
+width:100%;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="floating-hearts">
+<span class="heart" style="left:5%;animation-duration:12s;">💖</span>
+<span class="heart" style="left:18%;animation-duration:17s;">🖤</span>
+<span class="heart" style="left:32%;animation-duration:14s;">✨</span>
+<span class="heart" style="left:46%;animation-duration:19s;">💕</span>
+<span class="heart" style="left:62%;animation-duration:15s;">💗</span>
+<span class="heart" style="left:76%;animation-duration:18s;">🖤</span>
+<span class="heart" style="left:90%;animation-duration:13s;">✨</span>
+</div>
+
+<div class="container" style="position:relative;z-index:2;">
+
+<div class="nickname">STREAMER • @coc</div>
+
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:25px;">
+<div style="padding:10px 16px;border-radius:999px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,105,180,0.2);font-size:14px;color:#ff8ccc;">LIVE STREAMS</div>
+<div style="padding:10px 16px;border-radius:999px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,105,180,0.2);font-size:14px;color:#ff8ccc;">EXCLUSIVE CONTENT</div>
+<div style="padding:10px 16px;border-radius:999px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,105,180,0.2);font-size:14px;color:#ff8ccc;">24/7 ONLINE</div>
+</div>
+
+<h1>Хочешь поддержать меня? 💕</h1>
+
+<p class="desc">
+Если тебе нравится мой контент и ты хочешь видеть его чаще — можешь отправить чаевые ✨<br><br>
+Это очень мотивирует меня делать ещё больше стримов и контента 😈
+</p>
+
+<div class="divider"><span>♥</span></div>
+
+<div class="section-title">💗 Чаевые / Поддержка</div>
+
+<div style="background:linear-gradient(90deg,rgba(255,0,128,0.12),rgba(255,0,180,0.06));border:1px solid rgba(255,105,180,0.15);padding:18px;border-radius:20px;margin-bottom:25px;font-size:15px;line-height:1.7;color:#ffd0e8;">
+🔥 Любая поддержка помогает мне делать больше стримов, контента и новых проектов.<br>
+💎 Все донаты моментально приходят на кошелёк.
+</div>
+
+<div class="card">
+<div class="row">
+<div class="icon usdt">₮</div>
+<div>
+<div class="coin-title">USDT (TRC20)</div>
+<div class="network">Сеть: TRON (TRC20)</div>
+</div>
+</div>
+
+<div class="wallet">
+<div class="address" id="trc20">TAHUm5cT1dthGHNP8cAgExeRoCxqXcEcgJ</div>
+<button class="copy-btn" onclick="copyWallet('trc20')">Копировать</button>
+</div>
+</div>
+
+<div class="card">
+<div class="row">
+<div class="icon usdt">₮</div>
+<div>
+<div class="coin-title">USDT (ERC20)</div>
+<div class="network">Сеть: Ethereum (ERC20)</div>
+</div>
+</div>
+
+<div class="wallet">
+<div class="address" id="erc20">0x91c50dfd68567c5b03a783235bc407285ba876ea</div>
+<button class="copy-btn" onclick="copyWallet('erc20')">Копировать</button>
+</div>
+</div>
+
+<div class="card">
+<div class="row">
+<div class="icon btc">₿</div>
+<div>
+<div class="coin-title">BTC (Bitcoin)</div>
+<div class="network">Сеть: Bitcoin</div>
+</div>
+</div>
+
+<div class="wallet">
+<div class="address" id="btc">1Jf5HsCsKrxALLoHBx3LJtkmVd4FhuJaS9</div>
+<button class="copy-btn" onclick="copyWallet('btc')">Копировать</button>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;">
+<a class="telegram-btn" href="https://t.me/coc" target="_blank">
+💌 Telegram канал
+</a>
+
+<a class="telegram-btn" href="#" target="_blank" style="background:linear-gradient(90deg,#1f1f1f,#353535);box-shadow:none;border:1px solid rgba(255,255,255,0.08);">
+🎥 Смотреть стримы
+</a>
+</div>
+
+<div style="display:flex;justify-content:center;gap:12px;margin-top:25px;flex-wrap:wrap;">
+<div style="width:10px;height:10px;border-radius:50%;background:#ff4fa8;box-shadow:0 0 10px #ff4fa8;"></div>
+<div style="width:10px;height:10px;border-radius:50%;background:#ff7ac3;box-shadow:0 0 10px #ff7ac3;"></div>
+<div style="width:10px;height:10px;border-radius:50%;background:#ffffff;box-shadow:0 0 10px #ffffff;"></div>
+</div>
+
+<a class="telegram-btn" href="https://t.me/coc" target="_blank">
+💌 Telegram канал
+</a>
+
+<div class="footer">
+Спасибо за твою поддержку 🖤<br>
+Ты делаешь меня счастливее ✨
+</div>
+
+<div class="divider"><span>♡</span></div>
+
+</div>
+
+<script>
+function copyWallet(id){
+const text=document.getElementById(id).innerText;
+navigator.clipboard.writeText(text);
+
+const buttons=document.querySelectorAll('.copy-btn');
+buttons.forEach(btn=>{
+if(btn.getAttribute('onclick').includes(id)){
+btn.innerText='Скопировано ✓';
+setTimeout(()=>{
+btn.innerText='Копировать';
+},1800)
+}
+})
+}
+</script>
+
+</body>
+</html>
